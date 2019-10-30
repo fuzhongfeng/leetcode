@@ -11,6 +11,7 @@
  */
 var lengthOfLongestSubstring = function(s) {
     // 这里的子串要求是连续的
+    // 时间复杂度为 O(n)，空间复杂度为 O(1)
     let len = 0;
     let sub = ""; // 利用变量存储
     for (let i = 0; i < s.length; i++) {
