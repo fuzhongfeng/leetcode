@@ -10,14 +10,11 @@
  * @return {number}
  */
 var singleNumber = function(nums) {
-    let n;
-    for (let i = 0; i < nums.length; i++) {
-        if (nums.indexOf(nums[i]) === nums.lastIndexOf(nums[i])) {
-            n = nums[i]
-            break;
-        }
+    let r = 0;
+    for (let n of nums) {
+        r = n ^ r
     }
-    return n;
+    return r;
 };
 // @lc code=end
 
