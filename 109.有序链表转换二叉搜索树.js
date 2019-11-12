@@ -24,7 +24,6 @@
  * @return {TreeNode}
  */
 var sortedListToBST = function(head) {
-    
 };
 // @lc code=end
 
