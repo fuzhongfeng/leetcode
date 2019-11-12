@@ -10,12 +10,12 @@
  * @return {number}
  */
 var rob = function(nums) {
-    // f(n) = Max(f(n-2) + Vn, f(n-1))
-    let per = 0;
+    // dp(n) = Max(dp(n-2) + Vn, dp(n-1))
+    let per = 0; 
     let max = 0;
     for(let i=0; i<nums.length; i++) {
       const temp = max;
-      max = Math.max(per + nums[i], max)
+      max = Math.max(per + nums[i], max) // per: dp(n-2);nums[i]: Vn;max: dp(n-1)
       per = temp;
     }
     return max;
