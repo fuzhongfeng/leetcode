@@ -2,18 +2,19 @@
  * @lc app=leetcode.cn id=15 lang=javascript
  *
  * [15] 三数之和
+ * 思路：排序后遍历数组，数组的每一项分别从当前位置向后、两端向中间匹配。相同元素需去重
  */
-
 // @lc code=start
 /**
  * @param {number[]} nums
  * @return {number[][]}
  */
 var threeSum = function(nums) {
+  // nums = [-1, 0, 1, 2, -1, -4]
   const result = [];
   const len = nums.length;
   if(!nums || len < 3) return result;
-  nums.sort((a, b) => a - b); // 升序排序
+  nums.sort((a, b) => a - b); // 升序排序 [-4, -1, -1, 0, 1, 2]
 
   for (let i = 0; i < len ; i++) {
       if(nums[i] > 0) break; // 排序后如果当前数字大于0，则三数之和一定大于0，所以结束循环
