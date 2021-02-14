@@ -62,18 +62,29 @@ var findKthLargest = function(nums, k) {
 
   // return nums[nums.length - k]
 
-  // 堆排序, O(nlogn)
-  function heapSort(array) {
+  // 堆排序, O(nlogk)
+  /**
+  * 排序
+  * @param {*} array 
+  * @param {*} k 排序 k 个元素，k >= 1 && k <= array.length。可解决 topK 问题。
+  */
+  function heapSort(array, k) {
     var heapSize = array.length;
+    var limit = k !== undefined ? heapSize - k : 1
 
+    // 构建堆
     buildHeap(array);
-    while (heapSize > 1) {
+    while (heapSize > limit) {
       heapSize--;
+      // 将堆顶的根节点与末尾元素进行交换，剩余的元素反复执行便得到一个有序数组
       swap(array, 0, heapSize);
       heapify(array, heapSize, 0);
     }
   };
 
+  /**
+  * 将数组构建成堆。
+  */
   function buildHeap(array) {
     var heapSize = array.length;
     for (var i = Math.floor(array.length / 2); i >= 0; i--) {
@@ -81,6 +92,11 @@ var findKthLargest = function(nums, k) {
     }
   };
 
+  /**
+  * 构建堆需要满足的条件：
+  * 大顶堆：array[i] >= array[2i+1] && array[i] >= array[2i+2]  
+  * 小顶堆：array[i] <= array[2i+1] && array[i] <= arr[2i+2]
+  */
   function heapify(array, heapSize, i) {
     var left = i * 2 + 1,
       right = i * 2 + 2,
@@ -100,7 +116,7 @@ var findKthLargest = function(nums, k) {
   function swap(arr, i, j) {
     [arr[i], arr[j]] = [arr[j], arr[i]];
   }
-  heapSort(nums)
+  heapSort(nums, k)
 
   return nums[nums.length - k]
 };
